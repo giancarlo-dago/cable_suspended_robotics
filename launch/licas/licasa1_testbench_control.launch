@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+
+<launch>
+
+  <!-- These arguments you can pass this launch file-->
+
+  <arg name="controllers" default="joint_state_controller
+                                   licasa1_revolute_z_effort_pos_controller
+                                   licasa1_shoulder_x_effort_pos_controller
+                                   licasa1_shoulder_y_effort_pos_controller
+                                   licasa1_shoulder_z_effort_pos_controller
+                                   licasa1_leftarm_1_effort_pos_controller
+                                   licasa1_leftarm_2_effort_pos_controller
+                                   licasa1_leftarm_3_effort_pos_controller
+                                   licasa1_leftarm_4_effort_pos_controller
+                                   licasa1_rightarm_1_effort_pos_controller
+                                   licasa1_rightarm_2_effort_pos_controller
+                                   licasa1_rightarm_3_effort_pos_controller
+                                   licasa1_rightarm_4_effort_pos_controller"/>
+
+  <!-- Load joint controller configurations from YAML file to parameter server -->
+  <rosparam file="$(find cable_suspended_robotics)/config/licas/licasa1_testbench_control.yaml" command="load" ns="/licasa1"/>
+
+  <!-- Load the controllers -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/licasa1" args="$(arg controllers)" />
+
+  <!-- Convert joint states to TF transforms for rviz, etc -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen">
+    <remap from="/joint_states" to="/licasa1/joint_states" />
+  </node>
+
+</launch>

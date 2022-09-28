@@ -14,7 +14,6 @@
 		<arg name="paused" value="$(arg pause)"/>
 		<arg name="use_sim_time" value="$(arg use_sim_time)"/>
 	</include>
-	
 
     <!-- Robot -->	
     <param name="robot_description" command=" xacro '$(find cable_suspended_robotics)/urdf/licas/licasa1_testbench.urdf.xacro'" />
