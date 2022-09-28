@@ -1,1 +1,1 @@
-# cable_suspended_robotics
+# CABLE SUSPENDED ROBOTICS
