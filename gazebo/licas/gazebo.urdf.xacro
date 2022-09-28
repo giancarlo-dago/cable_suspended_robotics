@@ -6,7 +6,7 @@
       <robotNamespace>/licasa1</robotNamespace>
     </plugin>
 
-    <plugin name="libplatform_control" filename="libplatform_control.so">
+    <plugin name="libplatform_control_plugin" filename="libplatform_control_plugin.so">
 		</plugin>
   </gazebo>
 

@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.0.2)
 project(cable_suspended_robotics)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
-# add_compile_options(-std=c++11)
+add_compile_options(-std=c++17)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -203,3 +203,13 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
+
+include (FindPkgConfig)
+if (PKG_CONFIG_FOUND)
+	pkg_check_modules(GAZEBO gazebo)
+endif()
+
+include_directories(${GAZEBO_INCLUDE_DIRS})
+link_directories(${GAZEBO_LIBRARY_DIRS})
+add_library(platform_control_plugin SHARED gazebo/licas/platform_control_plugin.cpp)
+target_link_libraries(platform_control_plugin ${GAZEBO_LIBRARIES} ${Boost_LIBRARIES})
