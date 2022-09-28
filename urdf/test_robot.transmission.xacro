@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<robot name="Test_Robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+	<xacro:macro name="Test_Robot_transmission" params="name hardware_interface">
+
+		<!-- FIRST JOINT -->
+		<transmission name="first_joint_tran">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="first_joint">
+				<hardwareInterface>${hardware_interface}</hardwareInterface>
+			</joint>
+			<actuator name="first_joint_motor">
+				<hardwareInterface>${hardware_interface}</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+
+		<!-- SECOND JOINT -->
+		<transmission name="second_joint_tran">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="second_joint">
+				<hardwareInterface>${hardware_interface}</hardwareInterface>
+			</joint>
+			<actuator name="second_joint_motor">
+				<hardwareInterface>${hardware_interface}</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+
+		<!-- THIRD JOINT -->
+		<transmission name="third_joint_tran">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="third_joint">
+				<hardwareInterface>${hardware_interface}</hardwareInterface>
+			</joint>
+			<actuator name="third_joint_motor">
+				<hardwareInterface>${hardware_interface}</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+
+		<!-- BAR -->
+		<!-- <transmission name="bar_joint_tran">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="bar_joint">
+				<hardwareInterface>${hardware_interface}</hardwareInterface>
+			</joint>
+			<actuator name="bar_joint_motor">
+				<hardwareInterface>${hardware_interface}</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission> -->
+
+		<!-- SHOULDER -->
+		<!-- <transmission name="shoulder_joint_tran">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="shoulder_joint">
+				<hardwareInterface>${hardware_interface}</hardwareInterface>
+			</joint>
+			<actuator name="shoulder_joint_motor">
+				<hardwareInterface>${hardware_interface}</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission> -->
+
+		<!-- LEFT ARM-->
+		<!-- <transmission name="left_arm_joint_tran">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="left_arm_joint">
+				<hardwareInterface>${hardware_interface}</hardwareInterface>
+			</joint>
+			<actuator name="left_arm_joint_motor">
+				<hardwareInterface>${hardware_interface}</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission> -->
+
+		<!-- RIGHT ARM-->
+		<!-- <transmission name="right_arm_joint_tran">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="right_arm_joint">
+				<hardwareInterface>${hardware_interface}</hardwareInterface>
+			</joint>
+			<actuator name="right_arm_joint_motor">
+				<hardwareInterface>${hardware_interface}</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission> -->
+
+	</xacro:macro>
+
+
+</robot>

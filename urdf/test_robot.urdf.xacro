@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+
+<!-- Robot Name -->
+<robot name="Test_Robot" xmlns:xacro="http://ros.org/wiki/xacro">
+
+<!-- Import Transmissions -->
+<xacro:include filename="$(find licasa1_description)/urdf/test_robot.transmission.xacro" />
+<xacro:Test_Robot_transmission name="Test_Robot" hardware_interface="hardware_interface/EffortJointInterface"/>
+
+<!-- Import Gazebo plugins -->
+<xacro:include filename="$(find licasa1_description)/gazebo/test_gazebo.urdf.xacro"/>
+
+<link name="world"/>
+
+<!-- TESTBENCH -->
+<!-- <joint name="base_joint" type="fixed">
+  <origin xyz="0 0 1.0"/>
+  <parent link="world"/>
+  <child link="testbench"/>
+</joint>
+
+<link name="testbench">
+  <inertial>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <mass value="10" />
+    <inertia ixx="1e-03" ixy="0.0" ixz="0.0" iyy="1e-03" iyz="0.0" izz="1e-03"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <box size="0.15 0.15 0.01"/>
+    </geometry>
+  </visual>
+</link> -->
+
+<!-- FIRST LINK-->
+<joint name="first_joint" type="revolute">
+  <origin rpy="0 0 0" xyz="0 0 1.0"/>
+  <parent link="world"/>
+  <child link="first_link"/>
+  <axis xyz="1 0 0"/>
+  <dynamics damping="0.1" friction="0.0"/>
+  <limit effort="10000000000000000000000000000000000000" lower="${-180/180*pi}" upper="${180/180*pi}" velocity="10000000000000000000000000000000000000"/>
+</joint>
+
+<link name="first_link">
+  <inertial>
+    <origin xyz="0 0 -0.1"/> 
+    <mass value="0.233"/>
+    <inertia ixx="1e-1" ixy="0.0" ixz="0.0" iyy="1e-1" iyz="0.0" izz="1e-1"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0 0 -0.1"/>
+    <geometry>
+      <box size="0.03 0.03 0.2"/>
+    </geometry>
+  </visual>
+</link>
+
+<!-- SECOND LINK-->
+<joint name="second_joint" type="revolute">
+  <origin rpy="0 0 0" xyz="0 0 -0.2"/>
+  <parent link="first_link"/>
+  <child link="second_link"/>
+  <axis xyz="1 0 0"/>
+  <dynamics damping="0.0" friction="0.0"/>
+  <limit effort="10000000000000000000000000000000000000" lower="${-180/180*pi}" upper="${180/180*pi}" velocity="10000000000000000000000000000000000000"/>
+</joint>
+
+<link name="second_link">
+  <inertial>
+    <origin xyz="0 0 -0.1"/> 
+    <mass value="0.233"/>
+    <inertia ixx="1e-1" ixy="0.0" ixz="0.0" iyy="1e-1" iyz="0.0" izz="1e-1"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0 0 -0.1"/>
+    <geometry>
+      <box size="0.03 0.03 0.2"/>
+    </geometry>
+  </visual>
+</link>
+
+<!-- THIRD LINK-->
+<joint name="third_joint" type="revolute">
+  <origin rpy="0 0 0" xyz="0 0 -0.2"/>
+  <parent link="second_link"/>
+  <child link="third_link"/>
+  <axis xyz="1 0 0"/>
+  <dynamics damping="0.0" friction="0.0"/>
+  <limit effort="10000000000000000000000000000000000000" lower="${-180/180*pi}" upper="${180/180*pi}" velocity="10000000000000000000000000000000000000"/>
+</joint>
+
+<link name="third_link">
+  <inertial>
+    <origin xyz="0 0 -0.1"/>
+    <mass value="0.233"/>
+    <inertia ixx="1e-1" ixy="0.0" ixz="0.0" iyy="1e-1" iyz="0.0" izz="1e-1"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0 0 -0.1"/>
+    <geometry>
+      <box size="0.03 0.03 0.2"/>
+    </geometry>
+  </visual>
+</link>
+
+</robot>

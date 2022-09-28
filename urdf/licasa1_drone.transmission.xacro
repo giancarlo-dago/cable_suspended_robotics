@@ -1,0 +1,180 @@
+<?xml version="1.0"?>
+<robot name="LiCAS_A1" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+	<xacro:macro name="LiCAS_A1_transmission" params="name hardware_interface1 hardware_interface2">
+
+		<!-- DRONE -->
+		<transmission name="prismatic_joint_tran_x">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="prismatic_joint_x">
+				<hardwareInterface>${hardware_interface2}</hardwareInterface>
+			</joint>
+			<actuator name="prismatic_joint_motor_x">
+				<hardwareInterface>${hardware_interface2}</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+
+		<transmission name="prismatic_joint_tran_y">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="prismatic_joint_y">
+				<hardwareInterface>${hardware_interface2}</hardwareInterface>
+			</joint>
+			<actuator name="prismatic_joint_motor_y">
+				<hardwareInterface>${hardware_interface2}</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+
+		<!-- BAR -->
+		<transmission name="revolute_joint_tran_z">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="revolute_joint_z">
+				<hardwareInterface>${hardware_interface2}</hardwareInterface>
+			</joint>
+			<actuator name="revolute_joint_motor_z">
+				<hardwareInterface>${hardware_interface2}</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>	
+
+
+		<transmission name="revolute_joint_tran_x">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="revolute_joint_x">
+				<hardwareInterface>${hardware_interface2}</hardwareInterface>
+			</joint>
+			<actuator name="revolute_joint_motor_x">
+				<hardwareInterface>${hardware_interface2}</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+
+		<transmission name="revolute_joint_tran_y">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="revolute_joint_y">
+				<hardwareInterface>${hardware_interface2}</hardwareInterface>
+			</joint>
+			<actuator name="revolute_joint_motor_y">
+				<hardwareInterface>${hardware_interface2}</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+
+		<!-- SHOULDER -->
+		<transmission name="shoulder_joint_tran_x">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="shoulder_joint_x">
+				<hardwareInterface>${hardware_interface2}</hardwareInterface>
+			</joint>
+			<actuator name="shoulder_joint_motor_x">
+				<hardwareInterface>${hardware_interface2}</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+
+		<transmission name="shoulder_joint_tran_y">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="shoulder_joint_y">
+				<hardwareInterface>${hardware_interface2}</hardwareInterface>
+			</joint>
+			<actuator name="shoulder_joint_motor_y">
+				<hardwareInterface>${hardware_interface2}</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+
+		<!-- LEFT ARM-->
+		<transmission name="${name}_leftarm_tran_1">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="${name}_q1_1">
+				<hardwareInterface>${hardware_interface2}</hardwareInterface>
+			</joint>
+			<actuator name="${name}_leftarm_motor_1">
+				<hardwareInterface>${hardware_interface2}</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+
+		<transmission name="${name}_leftarm_tran_2">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="${name}_q1_2">
+				<hardwareInterface>${hardware_interface2}</hardwareInterface>
+			</joint>
+			<actuator name="${name}_leftarm_motor_2">
+				<hardwareInterface>${hardware_interface2}</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>    
+
+		<transmission name="${name}_leftarm_tran_3">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="${name}_q1_3">
+				<hardwareInterface>${hardware_interface2}</hardwareInterface>
+			</joint>
+			<actuator name="${name}_leftarm_motor_3">
+				<hardwareInterface>${hardware_interface2}</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+
+		<transmission name="${name}_leftarm_tran_4">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="${name}_q1_4">
+				<hardwareInterface>${hardware_interface2}</hardwareInterface>
+			</joint>
+			<actuator name="${name}_leftarm_motor_4">
+				<hardwareInterface>${hardware_interface2}</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+
+		<!-- RIGHT ARM-->
+		<transmission name="${name}_rightarm_tran_1">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="${name}_q2_1">
+				<hardwareInterface>${hardware_interface2}</hardwareInterface>
+			</joint>
+			<actuator name="${name}_rightarm_motor_1">
+				<hardwareInterface>${hardware_interface2}</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+
+		<transmission name="${name}_rightarm_tran_2">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="${name}_q2_2">
+				<hardwareInterface>${hardware_interface2}</hardwareInterface>
+			</joint>
+			<actuator name="${name}_rightarm_motor_2">
+				<hardwareInterface>${hardware_interface2}</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>    
+
+		<transmission name="${name}_rightarm_tran_3">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="${name}_q2_3">
+				<hardwareInterface>${hardware_interface2}</hardwareInterface>
+			</joint>
+			<actuator name="${name}_rightarm_motor_3">
+				<hardwareInterface>${hardware_interface2}</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission> 
+
+		<transmission name="${name}_rightarm_tran_4">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="${name}_q2_4">
+				<hardwareInterface>${hardware_interface2}</hardwareInterface>
+			</joint>
+			<actuator name="${name}_rightarm_motor_4">
+				<hardwareInterface>${hardware_interface2}</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission> 
+
+	</xacro:macro>
+
+
+</robot>
