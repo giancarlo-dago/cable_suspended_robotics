@@ -1,0 +1,151 @@
+#licasA1_drone:
+  # Publish all joint states -----------------------------------
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 1000
+
+############################################################################################
+  # Position Controllers - Joint Position Controllers -------------------------------------
+############################################################################################
+
+  licasa1_shoulder_x_position_pos_controller:
+    type: position_controllers/JointPositionController
+    joint: shoulder_joint_x
+    
+  licasa1_shoulder_y_position_pos_controller:
+    type: position_controllers/JointPositionController
+    joint: shoulder_joint_y
+
+  licasa1_leftarm_1_position_pos_controller:
+    type: position_controllers/JointPositionController
+    joint: LiCAS_A1_q1_1
+
+  licasa1_leftarm_2_position_pos_controller:
+    type: position_controllers/JointPositionController
+    joint: LiCAS_A1_q1_2
+
+  licasa1_leftarm_3_position_pos_controller:
+    type: position_controllers/JointPositionController
+    joint: LiCAS_A1_q1_3
+
+  licasa1_leftarm_4_position_pos_controller:
+    type: position_controllers/JointPositionController
+    joint: LiCAS_A1_q1_4
+
+  licasa1_rightarm_1_position_pos_controller:
+    type: position_controllers/JointPositionController
+    joint: LiCAS_A1_q2_1
+
+  licasa1_rightarm_2_position_pos_controller:
+    type: position_controllers/JointPositionController
+    joint: LiCAS_A1_q2_2
+
+  licasa1_rightarm_3_position_pos_controller:
+    type: position_controllers/JointPositionController
+    joint: LiCAS_A1_q2_3
+
+  licasa1_rightarm_4_position_pos_controller:
+    type: position_controllers/JointPositionController
+    joint: LiCAS_A1_q2_4
+
+
+############################################################################################
+  # Effort Controllers - Joint Position Controllers ---------------------------------------
+############################################################################################
+
+  licasa1_revolute_z_effort_pos_controller:
+    type: effort_controllers/JointPositionController
+    joint: revolute_joint_z
+    pid: {p: 17.855, i: 0, d: 0.0, i_clamp_min: -10000, i_clamp_max: 10000}
+
+  licasa1_shoulder_x_effort_pos_controller:
+    type: effort_controllers/JointPositionController
+    joint: shoulder_joint_x
+    pid: {p: 700.0, i: 0, d: 0.01, i_clamp_min: -10000, i_clamp_max: 10000}
+    
+  licasa1_shoulder_y_effort_pos_controller:
+    type: effort_controllers/JointPositionController
+    joint: shoulder_joint_y
+    pid: {p: 700.0, i: 0, d: 0.01, i_clamp_min: -10000, i_clamp_max: 10000}
+
+  licasa1_shoulder_z_effort_pos_controller:
+    type: effort_controllers/JointPositionController
+    joint: shoulder_joint_z
+    pid: {p: 0.021, i: 0, d: 0.556, i_clamp_min: -10000, i_clamp_max: 10000}
+
+  licasa1_leftarm_1_effort_pos_controller:
+    type: effort_controllers/JointPositionController
+    joint: LiCAS_A1_q1_1
+    pid: {p: 200, i: 0, d: 0.55}
+
+  licasa1_leftarm_2_effort_pos_controller:
+    type: effort_controllers/JointPositionController
+    joint: LiCAS_A1_q1_2
+    pid: {p: 50, i: 0, d: 0.5}
+
+  licasa1_leftarm_3_effort_pos_controller:
+    type: effort_controllers/JointPositionController
+    joint: LiCAS_A1_q1_3
+    pid: {p: 1.5, i: 0, d: 0.1}
+
+  licasa1_leftarm_4_effort_pos_controller:
+    type: effort_controllers/JointPositionController
+    joint: LiCAS_A1_q1_4
+    pid: {p: 50, i: 0, d: 0.55}
+
+  licasa1_rightarm_1_effort_pos_controller:
+    type: effort_controllers/JointPositionController
+    joint: LiCAS_A1_q2_1
+    pid: {p: 200, i: 0, d: 0.55}
+
+  licasa1_rightarm_2_effort_pos_controller:
+    type: effort_controllers/JointPositionController
+    joint: LiCAS_A1_q2_2
+    pid: {p: 50, i: 0, d: 0.5}
+
+  licasa1_rightarm_3_effort_pos_controller:
+    type: effort_controllers/JointPositionController
+    joint: LiCAS_A1_q2_3
+    pid: {p: 1.5, i: 0, d: 0.1}
+
+  licasa1_rightarm_4_effort_pos_controller:
+    type: effort_controllers/JointPositionController
+    joint: LiCAS_A1_q2_4
+    pid: {p: 50, i: 0, d: 0.55}
+
+############################################################################################
+  # Effort Controllers - Joint Effort Controller - (ARMS) ---------------------------------
+############################################################################################
+
+  licasa1_leftarm_1_effort_eff_controller:
+    type: effort_controllers/JointEffortController
+    joint: LiCAS_A1_q1_1
+
+  licasa1_leftarm_2_effort_eff_controller:
+    type: effort_controllers/JointEffortController
+    joint: LiCAS_A1_q1_2
+
+  licasa1_leftarm_3_effort_eff_controller:
+    type: effort_controllers/JointEffortController
+    joint: LiCAS_A1_q1_3
+
+  licasa1_leftarm_4_effort_eff_controller:
+    type: effort_controllers/JointEffortController
+    joint: LiCAS_A1_q1_4
+
+  licasa1_rightarm_1_effort_eff_controller:
+    type: effort_controllers/JointEffortController
+    joint: LiCAS_A1_q2_1
+
+  licasa1_rightarm_2_effort_eff_controller:
+    type: effort_controllers/JointEffortController
+    joint: LiCAS_A1_q2_2
+
+  licasa1_rightarm_3_effort_eff_controller:
+    type: effort_controllers/JointEffortController
+    joint: LiCAS_A1_q2_3
+
+  licasa1_rightarm_4_effort_eff_controller:
+    type: effort_controllers/JointEffortController
+    joint: LiCAS_A1_q2_4
+ 
