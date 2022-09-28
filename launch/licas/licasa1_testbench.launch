@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<!--Convenience launch file to start gazebo + control--> 
+<launch>
+	<!--param name="/use_sim_time" value="true" /-->
+
+	<include file="$(find cable_suspended_robotics)/launch/licas/spawn_licasa1_testbench.launch">
+	</include>
+
+	<include file="$(find cable_suspended_robotics)/launch/licas/licasa1_testbench_control.launch">
+	</include>
+
+</launch>
