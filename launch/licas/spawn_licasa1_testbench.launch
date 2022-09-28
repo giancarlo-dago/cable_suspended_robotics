@@ -17,7 +17,7 @@
 	
 
     <!-- Robot -->	
-    <param name="robot_description" command=" xacro '$(find licasa1_description)/urdf/licasa1_testbench.urdf.xacro'" />
+    <param name="robot_description" command=" xacro '$(find cable_suspended_robotics)/urdf/licas/licasa1_testbench.urdf.xacro'" />
     <node name="licasa1_spawn" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
 		  args="-param robot_description 
 		  -urdf

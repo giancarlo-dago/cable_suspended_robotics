@@ -4,11 +4,11 @@
 <robot name="LiCAS_A1" xmlns:xacro="http://ros.org/wiki/xacro">
 
 <!-- Import Transmissions -->
-<xacro:include filename="$(find licasa1_description)/urdf/licasa1_testbench.transmission.xacro" />
+<xacro:include filename="$(find cable_suspended_robotics)/urdf/licas/licasa1_testbench.transmission.xacro" />
 <xacro:LiCAS_A1_transmission name="LiCAS_A1" hardware_interface1="hardware_interface/PositionJointInterface" hardware_interface2="hardware_interface/EffortJointInterface" />
 
 <!-- Import Gazebo plugins -->
-<xacro:include filename="$(find licasa1_description)/gazebo/gazebo.urdf.xacro"/>
+<xacro:include filename="$(find cable_suspended_robotics)/gazebo/licas/gazebo.urdf.xacro"/>
 
 
 <link name="world"/>
@@ -144,13 +144,13 @@
   <visual>
     <origin xyz="0 0 0"/>
     <geometry>
-      <mesh filename="package://licasa1_description/mesh/Shoulder_Pitch_Structure.dae" scale=".001 .001 .001"/>
+      <mesh filename="package://cable_suspended_robotics/mesh/licas/Shoulder_Pitch_Structure.dae" scale=".001 .001 .001"/>
     </geometry>
   </visual>
   <collision>
     <origin xyz="0 0 0"/>
     <geometry>
-      <mesh filename="package://licasa1_description/mesh/Shoulder_Pitch_Structure.dae" scale=".001 .001 .001"/>
+      <mesh filename="package://cable_suspended_robotics/mesh/licas/Shoulder_Pitch_Structure.dae" scale=".001 .001 .001"/>
     </geometry>
   </collision>
 </link>
@@ -175,13 +175,13 @@
   <visual>
     <origin xyz="0 0.04 0"/>
     <geometry>
-      <mesh filename="package://licasa1_description/mesh/Shoulder_Roll_Structure_Left.dae" scale=".001 .001 .001"/>
+      <mesh filename="package://cable_suspended_robotics/mesh/licas/Shoulder_Roll_Structure_Left.dae" scale=".001 .001 .001"/>
     </geometry>
   </visual>
   <collision>
     <origin xyz="0 0.04 0"/>
     <geometry>
-      <mesh filename="package://licasa1_description/mesh/Shoulder_Roll_Structure_Left.dae" scale=".001 .001 .001"/>
+      <mesh filename="package://cable_suspended_robotics/mesh/licas/Shoulder_Roll_Structure_Left.dae" scale=".001 .001 .001"/>
     </geometry>
   </collision>
 </link>
@@ -205,13 +205,13 @@
   <visual>
     <origin xyz="0 0 0"/>
     <geometry>
-      <mesh filename="package://licasa1_description/mesh/Assembly_Shoulder_Yaw_Structure.dae" scale=".001 .001 .001"/>
+      <mesh filename="package://cable_suspended_robotics/mesh/licas/Assembly_Shoulder_Yaw_Structure.dae" scale=".001 .001 .001"/>
     </geometry>
   </visual>
   <collision>
     <origin xyz="0 0 0"/>
     <geometry>
-      <mesh filename="package://licasa1_description/mesh/Assembly_Shoulder_Yaw_Structure.dae" scale=".001 .001 .001"/>
+      <mesh filename="package://cable_suspended_robotics/mesh/licas/Assembly_Shoulder_Yaw_Structure.dae" scale=".001 .001 .001"/>
     </geometry>
   </collision>
 </link> 
@@ -235,13 +235,13 @@
   <visual>
     <origin xyz="0 0 -0.132"/>
     <geometry>
-      <mesh filename="package://licasa1_description/mesh/Elbow_Pitch_Structure_Left_Cut.dae" scale=".001 .001 .001"/>
+      <mesh filename="package://cable_suspended_robotics/mesh/licas/Elbow_Pitch_Structure_Left_Cut.dae" scale=".001 .001 .001"/>
     </geometry>
   </visual>
   <collision>
     <origin xyz="0 0 -0.132"/>
     <geometry>
-      <mesh filename="package://licasa1_description/mesh/Elbow_Pitch_Structure_Left_Cut.dae" scale=".001 .001 .001"/>
+      <mesh filename="package://cable_suspended_robotics/mesh/licas/Elbow_Pitch_Structure_Left_Cut.dae" scale=".001 .001 .001"/>
     </geometry>
   </collision>
 </link>
@@ -265,13 +265,13 @@
   <visual>
     <origin xyz="0 0 0"/>
     <geometry>
-      <mesh filename="package://licasa1_description/mesh/Forearm_Link_with_Gripper_Servo.dae" scale=".001 .001 .001"/>
+      <mesh filename="package://cable_suspended_robotics/mesh/licas/Forearm_Link_with_Gripper_Servo.dae" scale=".001 .001 .001"/>
     </geometry>
   </visual>
   <collision>
     <origin xyz="0 0 0"/>
     <geometry>
-      <mesh filename="package://licasa1_description/mesh/Forearm_Link_with_Gripper_Servo.dae" scale=".001 .001 .001"/>
+      <mesh filename="package://cable_suspended_robotics/mesh/licas/Forearm_Link_with_Gripper_Servo.dae" scale=".001 .001 .001"/>
     </geometry>
   </collision>
 </link> 
@@ -296,13 +296,13 @@
   <visual>
     <origin xyz="0 -0.04 0"/>
     <geometry>
-      <mesh filename="package://licasa1_description/mesh/Shoulder_Roll_Structure_Right.dae" scale=".001 .001 .001"/>
+      <mesh filename="package://cable_suspended_robotics/mesh/licas/Shoulder_Roll_Structure_Right.dae" scale=".001 .001 .001"/>
     </geometry>
   </visual>
   <collision>
     <origin xyz="0 -0.04 0"/>
     <geometry>
-      <mesh filename="package://licasa1_description/mesh/Shoulder_Roll_Structure_Right.dae" scale=".001 .001 .001"/>
+      <mesh filename="package://cable_suspended_robotics/mesh/licas/Shoulder_Roll_Structure_Right.dae" scale=".001 .001 .001"/>
     </geometry>
   </collision>
 </link>
@@ -326,13 +326,13 @@
   <visual>
     <origin xyz="0 0 0"/>
     <geometry>
-      <mesh filename="package://licasa1_description/mesh/Assembly_Shoulder_Yaw_Structure.dae" scale=".001 .001 .001"/>
+      <mesh filename="package://cable_suspended_robotics/mesh/licas/Assembly_Shoulder_Yaw_Structure.dae" scale=".001 .001 .001"/>
     </geometry>
   </visual>
   <collision>
     <origin xyz="0 0 0"/>
     <geometry>
-      <mesh filename="package://licasa1_description/mesh/Assembly_Shoulder_Yaw_Structure.dae" scale=".001 .001 .001"/>
+      <mesh filename="package://cable_suspended_robotics/mesh/licas/Assembly_Shoulder_Yaw_Structure.dae" scale=".001 .001 .001"/>
     </geometry>
   </collision>
 </link> 
@@ -356,13 +356,13 @@
   <visual>
     <origin xyz="0 0 -0.132"/> 
     <geometry>
-      <mesh filename="package://licasa1_description/mesh/Elbow_Pitch_Structure_Right_Cut.dae" scale=".001 .001 .001"/>
+      <mesh filename="package://cable_suspended_robotics/mesh/licas/Elbow_Pitch_Structure_Right_Cut.dae" scale=".001 .001 .001"/>
     </geometry>
   </visual>
   <collision>
     <origin xyz="0 0 -0.132"/>
     <geometry>
-      <mesh filename="package://licasa1_description/mesh/Elbow_Pitch_Structure_Right_Cut.dae" scale=".001 .001 .001"/>
+      <mesh filename="package://cable_suspended_robotics/mesh/licas/Elbow_Pitch_Structure_Right_Cut.dae" scale=".001 .001 .001"/>
     </geometry>
   </collision>
 </link>
@@ -386,13 +386,13 @@
   <visual>
     <origin xyz="0 0 0"/> 
     <geometry>
-      <mesh filename="package://licasa1_description/mesh/Forearm_Link_with_Gripper_Servo.dae" scale=".001 .001 .001"/>
+      <mesh filename="package://cable_suspended_robotics/mesh/licas/Forearm_Link_with_Gripper_Servo.dae" scale=".001 .001 .001"/>
     </geometry>
   </visual>
   <collision>
     <origin xyz="0 0 0"/>
     <geometry>
-      <mesh filename="package://licasa1_description/mesh/Forearm_Link_with_Gripper_Servo.dae" scale=".001 .001 .001"/>
+      <mesh filename="package://cable_suspended_robotics/mesh/licas/Forearm_Link_with_Gripper_Servo.dae" scale=".001 .001 .001"/>
     </geometry>
   </collision>
 </link>
