@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<robot name="CraneBot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <gazebo>
+    <plugin name="gazebo_ros_controller" filename="libgazebo_ros_control.so">
+      <robotNamespace>/cranebot</robotNamespace>
+    </plugin>
+  </gazebo>
+
+  <gazebo reference="bridge"> 
+    <material>Gazebo/Yellow</material> 
+  </gazebo> 
+  <gazebo reference="trolley"> 
+    <material>Gazebo/Grey</material> 
+  </gazebo> 
+  <gazebo reference="cables_y"> 
+    <material>Gazebo/Grey</material> 
+  </gazebo> 
+  <gazebo reference="pulley"> 
+    <material>Gazebo/Yellow</material> 
+  </gazebo> 
+  <gazebo reference="cranebot_platform"> 
+    <material>Gazebo/Grey</material> 
+  </gazebo> 
+  <gazebo reference="erb145_link1_A"> 
+    <material>Gazebo/Grey</material> 
+  </gazebo> 
+  <gazebo reference="link2_A"> 
+    <material>Gazebo/Blue</material> 
+  </gazebo> 
+  <gazebo reference="erb145_link3_A"> 
+    <material>Gazebo/Grey</material> 
+  </gazebo> 
+  <gazebo reference="link4_A"> 
+    <material>Gazebo/Blue</material> 
+  </gazebo> 
+  <gazebo reference="erb115_link5_A"> 
+    <material>Gazebo/Grey</material> 
+  </gazebo> 
+  <gazebo reference="gripper_A"> 
+    <material>Gazebo/Grey</material> 
+  </gazebo> 
+  <gazebo reference="erb145_link1_B"> 
+    <material>Gazebo/Grey</material> 
+  </gazebo> 
+  <gazebo reference="link2_B"> 
+    <material>Gazebo/Blue</material> 
+  </gazebo> 
+  <gazebo reference="erb145_link3_B"> 
+    <material>Gazebo/Grey</material> 
+  </gazebo> 
+  <gazebo reference="link4_B"> 
+    <material>Gazebo/Blue</material> 
+  </gazebo> 
+  <gazebo reference="erb115_link5_B"> 
+    <material>Gazebo/Grey</material> 
+  </gazebo> 
+  <gazebo reference="gripper_B"> 
+    <material>Gazebo/Grey</material> 
+  </gazebo> 
+
+</robot>
