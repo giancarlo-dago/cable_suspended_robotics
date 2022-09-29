@@ -29,6 +29,8 @@ function [s, sdot, sdotdot, t] = trapVelTraj_tf(dt, tFinal, accDes, sInit, sFina
         tAcc = tFinal/2 - 0.5*sqrt(sqrtArg);
     end
   
+    cruiseVel = acc*tAcc;
+
     t=0:dt:tFinal;
     s = 0*t;
     sdot = 0*t;
