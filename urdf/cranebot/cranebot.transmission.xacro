@@ -1,0 +1,211 @@
+<?xml version="1.0"?>
+<robot name="CraneBot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+	<xacro:macro name="CraneBot_transmission" params="name hardware_interface">
+
+		<!-- CRANE -->
+		<transmission name="bridge_joint_tran">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="bridge_joint">
+				<hardwareInterface>${hardware_interface}</hardwareInterface>
+			</joint>
+			<actuator name="bridge_joint_motor">
+				<hardwareInterface>${hardware_interface}</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+
+		<transmission name="trolley_joint_tran">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="trolley_joint">
+				<hardwareInterface>${hardware_interface}</hardwareInterface>
+			</joint>
+			<actuator name="trolley_joint_motor">
+				<hardwareInterface>${hardware_interface}</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+
+		<!-- CABLES -->
+		<transmission name="cables_joint_tran_x">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="cables_joint_x">
+				<hardwareInterface>${hardware_interface}</hardwareInterface>
+			</joint>
+			<actuator name="cables_joint_motor_x">
+				<hardwareInterface>${hardware_interface}</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+
+		<transmission name="cables_joint_tran_y">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="cables_joint_y">
+				<hardwareInterface>${hardware_interface}</hardwareInterface>
+			</joint>
+			<actuator name="cables_joint_motor_y">
+				<hardwareInterface>${hardware_interface}</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+
+		<transmission name="cables_joint_tran_z">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="cables_joint_z">
+				<hardwareInterface>${hardware_interface}</hardwareInterface>
+			</joint>
+			<actuator name="cables_joint_motor_z">
+				<hardwareInterface>${hardware_interface}</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+
+		<!-- PLATFORM -->
+		<transmission name="cranebot_platform_joint_tran">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="cranebot_platform_joint">
+				<hardwareInterface>${hardware_interface}</hardwareInterface>
+			</joint>
+			<actuator name="cranebot_platform_joint_motor">
+				<hardwareInterface>${hardware_interface}</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+
+		<!-- ARMS -->
+		<transmission name="base_erb145_joint_A_tran">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="platform_erb145_joint_A">
+				<hardwareInterface>${hardware_interface}</hardwareInterface>
+			</joint>
+			<actuator name="base_erb145_joint_A_motor">
+				<hardwareInterface>${hardware_interface}</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+
+		<transmission name="erb145_link2_joint_A_tran">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="erb145_link2_joint_A">
+				<hardwareInterface>${hardware_interface}</hardwareInterface>
+			</joint>
+			<actuator name="erb145_link2_joint_A_motor">
+				<hardwareInterface>${hardware_interface}</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>    
+
+		<transmission name="link2_erb145_joint_A_tran">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="link2_erb145_joint_A">
+				<hardwareInterface>${hardware_interface}</hardwareInterface>
+			</joint>
+			<actuator name="link2_erb145_joint_A_motor">
+				<hardwareInterface>${hardware_interface}</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+
+		<transmission name="erb145_link4_joint_A_tran">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="erb145_link4_joint_A">
+				<hardwareInterface>${hardware_interface}</hardwareInterface>
+			</joint>
+			<actuator name="erb145_link4_joint_A_motor">
+				<hardwareInterface>${hardware_interface}</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+
+		<transmission name="link4_erb115_joint_A_tran">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="link4_erb115_joint_A">
+				<hardwareInterface>${hardware_interface}</hardwareInterface>
+			</joint>
+			<actuator name="link4_erb115_joint_A_motor">
+				<hardwareInterface>${hardware_interface}</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+
+		<transmission name="link5_gripper_joint_A_tran">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="link5_gripper_joint_A">
+				<hardwareInterface>${hardware_interface}</hardwareInterface>
+			</joint>
+			<actuator name="link5_gripper_joint_A_motor">
+				<hardwareInterface>${hardware_interface}</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+
+		<transmission name="platform_erb145_joint_B_tran">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="platform_erb145_joint_B">
+				<hardwareInterface>${hardware_interface}</hardwareInterface>
+			</joint>
+			<actuator name="platform_erb145_joint_B_motor">
+				<hardwareInterface>${hardware_interface}</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+
+		<transmission name="erb145_link2_joint_B_tran">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="erb145_link2_joint_B">
+				<hardwareInterface>${hardware_interface}</hardwareInterface>
+			</joint>
+			<actuator name="erb145_link2_joint_B_motor">
+				<hardwareInterface>${hardware_interface}</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>    
+
+		<transmission name="link2_erb145_joint_B_tran">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="link2_erb145_joint_B">
+				<hardwareInterface>${hardware_interface}</hardwareInterface>
+			</joint>
+			<actuator name="link2_erb145_joint_B_motor">
+				<hardwareInterface>${hardware_interface}</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+
+		<transmission name="erb145_link4_joint_B_tran">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="erb145_link4_joint_B">
+				<hardwareInterface>${hardware_interface}</hardwareInterface>
+			</joint>
+			<actuator name="erb145_link4_joint_B_motor">
+				<hardwareInterface>${hardware_interface}</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+
+		<transmission name="link4_erb115_joint_B_tran">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="link4_erb115_joint_B">
+				<hardwareInterface>${hardware_interface}</hardwareInterface>
+			</joint>
+			<actuator name="link4_erb115_joint_B_motor">
+				<hardwareInterface>${hardware_interface}</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+
+		<transmission name="link5_gripper_joint_B_tran">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="link5_gripper_joint_B">
+				<hardwareInterface>${hardware_interface}</hardwareInterface>
+			</joint>
+			<actuator name="link5_gripper_joint_B_motor">
+				<hardwareInterface>${hardware_interface}</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+
+	</xacro:macro>
+
+
+</robot>

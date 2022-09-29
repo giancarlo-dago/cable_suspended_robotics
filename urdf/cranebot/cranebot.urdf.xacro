@@ -1,0 +1,601 @@
+<?xml version="1.0"?>
+
+<!-- Robot Name --> 
+<robot name="CraneBot" xmlns:xacro="http://ros.org/wiki/xacro">
+
+<!-- Import Transmissions -->
+<xacro:include filename="$(find cable_suspended_robotics)/urdf/cranebot/cranebot.transmission.xacro" />
+<xacro:CraneBot_transmission name="CraneBot" hardware_interface="hardware_interface/EffortJointInterface"/>
+
+<!-- Import Gazebo plugins -->
+<xacro:include filename="$(find cable_suspended_robotics)/gazebo/cranebot/gazebo_cranebot.urdf.xacro"/>
+
+<!-- Params -->
+<xacro:property name="joint_damping" value="0.0" />
+<xacro:property name="joint_friction" value="0.0" />
+
+<link name="world"/>
+
+<!-- CRANE -->
+<joint name="bridge_joint" type="prismatic">
+  <origin xyz="0 0 7"/>
+  <parent link="world"/>
+  <child link="bridge"/>
+  <axis xyz="1 0 0"/>
+  <dynamics damping="0.0" friction="0.0"/>
+  <limit effort="10.0" lower="-100" upper="100" velocity="6"/>        <!-- SETTARE DATI GIUSTI-->  
+</joint>
+
+<link name="bridge">
+  <inertial>
+    <origin rpy="0 0 0" xyz="0 0 0"/>                                       <!-- SETTARE DATI GIUSTI-->  
+    <mass value="10000" />                                                  <!-- SETTARE DATI GIUSTI-->  
+    <inertia ixx="100" ixy="0.0" ixz="0.0" iyy="100" iyz="0.0" izz="100"/>  <!-- SETTARE DATI GIUSTI-->  
+  </inertial>
+  <visual>
+    <origin rpy="1.5707963 0.0 1.5707963" xyz="0.0 0.0 0.0"/>
+    <geometry>
+      <mesh filename="package://cable_suspended_robotics/mesh/cranebot/craneCMS_bridge.stl"/>
+    </geometry>
+    <material name="Schunk/Yellow">
+      <color rgba="1.0 1.0 0.0 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin rpy="1.5707963 0.0 1.5707963" xyz="0.0 0.0 0.0"/>
+    <geometry>
+      <mesh filename="package://cable_suspended_robotics/mesh/cranebot/craneCMS_bridge.stl"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="trolley_joint" type="prismatic">
+  <origin xyz="0 0 0"/>
+  <parent link="bridge"/>
+  <child link="trolley"/>
+  <axis xyz="0 1 0"/>
+  <dynamics damping="0.0" friction="0.0"/>
+  <limit effort="10.0" lower="0.0" upper="16.98" velocity="0.266666666"/>     <!-- SETTARE DATI GIUSTI-->   
+</joint>
+
+<link name="trolley">
+  <inertial>
+    <origin rpy="0 0 0" xyz="0 0 0"/>                                         <!-- SETTARE DATI GIUSTI-->  
+    <mass value="1000" />                                                     <!-- SETTARE DATI GIUSTI-->  
+    <inertia ixx="40" ixy="0.0" ixz="0.0" iyy="40" iyz="0.0" izz="40"/>       <!-- SETTARE DATI GIUSTI-->  
+  </inertial>
+  <visual>
+    <origin rpy="1.5707963 0.0 1.5707963" xyz="0.0 0.0 0.0"/>
+    <geometry>
+      <mesh filename="package://cable_suspended_robotics/mesh/cranebot/craneCMS_trolley.stl"/>
+    </geometry>
+    <material name="Schunk/DarkGray">
+      <color rgba="0.55 0.55 0.55 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+    <geometry>
+      <mesh filename="package://cable_suspended_robotics/mesh/cranebot/craneCMS_trolley.stl"/>
+    </geometry>
+  </collision>
+</link>
+
+<!-- CABLES -->
+<joint name="cables_joint_z" type="revolute" >
+  <origin rpy="0 0 0" xyz="0 1.01 -0.159"/>
+  <parent link="trolley" />
+  <child link="cables_z" />
+  <axis xyz="0 0 1" />
+  <dynamics damping="0.0" friction="0.0"/>
+  <limit effort="10.0" lower="${-150/180*pi}" upper="${150/180*pi}" velocity="6"/> <!-- SETTARE DATI GIUSTI-->  
+</joint>
+
+<link name="cables_z">
+  <inertial>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <mass value="36" />
+    <inertia ixx="35.637339701" ixy="0.0" ixz="0.0" iyy="35.874452244" iyz="0.0" izz="0.736738204"/> 
+  </inertial>
+</link>
+
+<joint name="cables_joint_x" type="revolute" >
+  <parent link="cables_z" />
+  <child link="cables_x" />
+  <axis xyz="1 0 0" />
+  <dynamics damping="0.0" friction="0.0"/>
+  <limit effort="10.0" lower="${-150/180*pi}" upper="${150/180*pi}" velocity="6"/>    <!-- SETTARE DATI GIUSTI-->   
+</joint>
+
+<link name="cables_x">
+  <inertial>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <mass value="36" />
+    <inertia ixx="35.637339701" ixy="0.0" ixz="0.0" iyy="35.874452244" iyz="0.0" izz="0.736738204"/> 
+  </inertial>
+</link>
+
+<joint name="cables_joint_y" type="revolute" >
+  <parent link="cables_x" />
+  <child link="cables_y" />
+  <axis xyz="0 1 0" />
+  <dynamics damping="0.0" friction="0.0"/>
+  <limit effort="10.0" lower="${-150/180*pi}" upper="${150/180*pi}" velocity="6"/>    <!-- SETTARE DATI GIUSTI-->  
+</joint>
+
+<link name="cables_y">
+  <inertial>
+    <origin rpy="0 0 0" xyz="0 0 -2.474"/>
+    <mass value="36" />
+    <inertia ixx="35.637339701" ixy="0.0" ixz="0.0" iyy="35.874452244" iyz="0.0" izz="0.736738204"/> 
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="package://cable_suspended_robotics/mesh/cranebot/cables_new_new.stl"/>
+    </geometry>
+    <material name="Schunk/Grey">
+      <color rgba="0.4 0.4 0.4 1.0"/>
+    </material>
+  </visual>
+</link>
+
+<joint name="cables_pulley_joint" type="fixed" >
+  <origin rpy="0 0 0" xyz="0 0 -3.16"/>
+  <parent link="cables_y" />
+  <child link="pulley" />
+</joint>
+
+<link name="pulley">
+  <inertial>
+    <origin rpy="0 0 0" xyz="0 0 0"/>                                               <!-- SETTARE DATI GIUSTI--> 
+    <mass value="0.001"/>                                                           <!-- SETTARE DATI GIUSTI-->   
+    <inertia ixx="1e-10" ixy="0.0" ixz="0.0" iyy="1e-10" iyz="0.0" izz="1e-10"/>    <!-- SETTARE DATI GIUSTI--> 
+  </inertial>
+  <visual>
+    <origin rpy="0.0 -1.5707963 1.5707963" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="package://cable_suspended_robotics/mesh/cranebot/pulley.stl"/>
+    </geometry>
+    <material name="Schunk/Grey">
+      <color rgba="0.4 0.4 0.4 1.0"/>
+    </material>
+  </visual>
+</link>
+
+
+<!-- PLATFORM -->
+<!-- Joint between the cables and platform -->
+<joint name="cranebot_platform_joint" type="revolute" >
+  <origin rpy="0 0 0" xyz="0 0 -0.126"/>
+  <parent link="pulley" />
+  <child link="cranebot_platform" />
+  <axis xyz="1 0 0" />
+  <dynamics damping="0.0" friction="0.0"/>
+  <limit effort="10.0" lower="${-150/180*pi}" upper="${150/180*pi}" velocity="6"/>
+</joint>
+
+<!-- CraneBot Platform (the platform this time contains the hook and the bases of the schunks) -->
+<link name="cranebot_platform">
+  <inertial>
+    <mass value="156.686"/>
+    <origin xyz="0.000773 0.000370 -0.549826"/>
+    <inertia ixx="10.058580977" ixy="0.024604081" ixz="-0.001721003" iyy="7.905514545" iyz="-0.010645008" izz="6.580734591"/>
+  </inertial>
+  <visual>
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 -0.414"/>
+    <geometry>
+      <mesh filename="package://cable_suspended_robotics/mesh/cranebot/platform_hook6_schunkbase.stl"/>
+    </geometry>
+    <material name="Schunk/DarkGrey">
+      <color rgba="0.55 0.55 0.55 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 -0.414"/>
+    <geometry>
+      <mesh filename="package://cable_suspended_robotics/mesh/cranebot/platform_hook6_schunkbase.stl"/>
+    </geometry>
+  </collision>
+</link>
+
+
+<!-- ARMS -->
+<!-- Joint between CraneBot platform and Link1A (first ERB145) -->
+<joint name="platform_erb145_joint_A" type="revolute">
+  <origin rpy="-3.1415926536 0 -3.1415926536" xyz="0 -0.190 -1.0470"/>
+  <parent link="cranebot_platform"/>
+  <child link="erb145_link1_A"/>
+  <axis xyz="0 0 1"/>
+  <limit effort="370" lower="-2.9671" upper="2.9671" velocity="1.2566"/>
+</joint>
+
+<!-- Link1A (first ERB145) -->
+<link name="erb145_link1_A">
+  <inertial>
+    <mass value="4.151"/>
+    <origin xyz="0.000078 -0.006905 -0.006906"/>
+    <inertia ixx="0.011901256" ixy="0.000009512" ixz="0.000013360" iyy="0.009939753" iyz="0.000193622" izz="0.009939770"/>
+  </inertial>
+  <visual>
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+    <geometry>
+      <mesh filename="package://cable_suspended_robotics/mesh/cranebot/erb145_link1.stl"/>
+    </geometry>
+    <material name="Schunk/LightGrey">
+      <color rgba="0.7 0.7 0.7 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+    <geometry>
+      <mesh filename="package://cable_suspended_robotics/mesh/cranebot/erb145_link1.stl"/>
+    </geometry>
+  </collision>
+</link>
+
+<!-- Joint between Link1A (first ERB145) and Link2A -->
+<joint name="erb145_link2_joint_A" type="revolute">
+  <origin rpy="1.57079632675 0 0" xyz="0 0 0.0"/>
+  <parent link="erb145_link1_A"/>
+  <child link="link2_A"/>
+  <axis xyz="0 0 1"/>
+  <limit effort="370" lower="-2.9671" upper="2.9671" velocity="1.2566"/>
+</joint>
+
+<!-- Link2A -->
+<link name="link2_A">
+  <inertial>
+    <mass value="1.677"/>
+    <origin xyz="0.000380 0.175 0.102383"/>
+    <inertia ixx="0.040667106" ixy="0.000000423" ixz="0.000012806" iyy="0.002418749" iyz="0.0" izz="0.041331488"/>
+  </inertial>
+  <visual>
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+    <geometry>
+      <mesh filename="package://cable_suspended_robotics/mesh/cranebot/link2.stl"/>
+    </geometry>
+    <material name="Schunk/Blue">
+      <color rgba="0.0 0.0 0.6 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+    <geometry>
+      <mesh filename="package://cable_suspended_robotics/mesh/cranebot/link2.stl"/>
+    </geometry>
+  </collision>
+</link>
+
+<!-- Joint between Link2A and Link3A (second ERB145) -->
+<joint name="link2_erb145_joint_A" type="revolute">
+  <origin rpy="3.1415926536 0.0 1.57079632675" xyz="0.0 0.350 0.0"/>
+  <parent link="link2_A"/>
+  <child link="erb145_link3_A"/>
+  <axis xyz="0 0 1"/>
+  <limit effort="370" lower="-2.7140" upper="2.7140" velocity="1.2566"/>
+</joint>
+
+<!-- Link3A (second ERB145) -->
+<link name="erb145_link3_A">
+  <inertial>
+    <mass value="4.151"/>
+    <origin xyz="0.006905 0.000078 -0.006906"/>
+    <inertia ixx="0.009940472" ixy="-0.000009512" ixz="-0.000193636" iyy="0.011902116" iyz="0.000013361" izz="0.009940489"/>
+  </inertial>
+  <visual>
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+    <geometry>
+      <mesh filename="package://cable_suspended_robotics/mesh/cranebot/erb145_link3.stl"/>
+    </geometry>
+    <material name="Schunk/LightGrey">
+      <color rgba="0.7 0.7 0.7 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+    <geometry>
+      <mesh filename="package://cable_suspended_robotics/mesh/cranebot/erb145_link3.stl"/>
+    </geometry>
+  </collision>   
+</link>
+
+<!-- Joint between Link3A (second ERB145) and Link4A -->
+<joint name="erb145_link4_joint_A" type="revolute">
+  <origin rpy="1.57079632675 0 1.57079632675" xyz="0 0 0.0"/>
+  <parent link="erb145_link3_A"/>
+  <child link="link4_A"/>
+  <axis xyz="0 0 1"/>
+  <limit effort="370" lower="-2.9671" upper="2.9671" velocity="1.2566"/>
+</joint>
+
+<!-- Link4A -->
+<link name="link4_A">
+  <inertial>
+    <mass value="1.027"/>
+    <origin xyz="0.000231 -0.046821 0.173837"/>
+    <inertia ixx="0.007319651" ixy="-0.000007532" ixz="0.000009231" iyy="0.006465057" iyz="0.002050576" izz="0.001867734"/>
+  </inertial>
+  <visual>
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+    <geometry>
+      <mesh filename="package://cable_suspended_robotics/mesh/cranebot/link4.stl"/>
+    </geometry>
+    <material name="Schunk/Blue">
+      <color rgba="0.0 0.0 0.6 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+    <geometry>
+      <mesh filename="package://cable_suspended_robotics/mesh/cranebot/link4.stl"/>
+    </geometry>
+  </collision>
+</link>
+
+<!-- Joint between Link4A and Link5A (ERB115) -->
+<joint name="link4_erb115_joint_A" type="revolute">
+  <origin rpy="-1.57079632675 0.0 0.0" xyz="0.0 0.0 0.305"/>
+  <parent link="link4_A"/>
+  <child link="erb115_link5_A"/>
+  <axis xyz="0 0 1"/>
+  <limit effort="370" lower="-2.9671" upper="2.9671" velocity="1.2566"/>
+</joint>
+
+<!-- Link5A (ERB115) -->
+<link name="erb115_link5_A">
+  <inertial>
+    <mass value="2.010"/>
+    <origin xyz="-0.000062 -0.007296 -0.003888"/>
+    <inertia ixx="0.003730197" ixy="-0.000003264" ixz="-0.000004826" iyy="0.002928014" iyz="0.000056625" izz="0.003298819"/>
+  </inertial>
+  <visual>
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+    <geometry>
+      <mesh filename="package://cable_suspended_robotics/mesh/cranebot/erb115_link5.stl"/>
+    </geometry>
+    <material name="Schunk/LightGrey">
+      <color rgba="0.7 0.7 0.7 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+    <geometry>
+      <mesh filename="package://cable_suspended_robotics/mesh/cranebot/erb115_link5.stl"/>
+    </geometry>
+  </collision>
+</link>
+
+<!-- Joint between Link5A (ERB115) and GripperA -->
+<joint name="link5_gripper_joint_A" type="revolute">
+  <origin rpy="1.57079632675 0.0 0.0" xyz="0.0 0.0 0.0"/>
+  <parent link="erb115_link5_A"/>
+  <child link="gripper_A"/>
+  <axis xyz="0 0 1"/>
+  <limit effort="370" lower="-2.9671" upper="2.9671" velocity="1.2566"/>
+</joint>
+
+<!-- GripperA -->
+<link name="gripper_A">
+  <inertial>
+    <mass value="1.471"/>
+    <origin xyz="0.000008 -0.000045 0.133403"/>
+    <inertia ixx="0.004474138" ixy="-0.000005207" ixz="0.000000909" iyy="0.003582612" iyz="0.000000225" izz="0.002264269"/>
+  </inertial>
+  <visual>
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+    <geometry>
+      <mesh filename="package://cable_suspended_robotics/mesh/cranebot/gripper.stl"/>
+    </geometry>
+    <material name="Schunk/DarkGrey">
+      <color rgba="0.55 0.55 0.55 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+    <geometry>
+      <mesh filename="package://cable_suspended_robotics/mesh/cranebot/gripper.stl"/>
+    </geometry>
+  </collision>
+</link>
+
+<!-- Joint between CraneBot platform and Link1B (first ERB145) -->
+<joint name="platform_erb145_joint_B" type="revolute">
+  <origin rpy="-3.1415926536 0 0" xyz="0 0.190 -1.0470"/>  
+  <parent link="cranebot_platform"/>
+  <child link="erb145_link1_B"/>
+  <axis xyz="0 0 1"/>
+  <limit effort="370" lower="-2.9671" upper="2.9671" velocity="1.2566"/>
+</joint>
+
+<!-- Link1B (first ERB145) -->
+<link name="erb145_link1_B">
+  <inertial>
+    <mass value="4.151"/>
+    <origin xyz="0.000078 -0.006905 -0.006906"/>
+    <inertia ixx="0.011901256" ixy="0.000009512" ixz="0.000013360" iyy="0.009939753" iyz="0.000193622" izz="0.009939770"/>
+  </inertial>
+  <visual>
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+    <geometry>
+      <mesh filename="package://cable_suspended_robotics/mesh/cranebot/erb145_link1.stl"/>
+    </geometry>
+    <material name="Schunk/LightGrey">
+      <color rgba="0.7 0.7 0.7 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+    <geometry>
+      <mesh filename="package://cable_suspended_robotics/mesh/cranebot/erb145_link1.stl"/>
+    </geometry>
+  </collision>
+</link>
+
+<!-- Joint between Link1B (first ERB145) and Link2B -->
+<joint name="erb145_link2_joint_B" type="revolute">
+  <origin rpy="1.57079632675 0 0" xyz="0 0 0.0"/>
+  <parent link="erb145_link1_B"/>
+  <child link="link2_B"/>
+  <axis xyz="0 0 1"/>
+  <limit effort="370" lower="-2.9671" upper="2.9671" velocity="1.2566"/>
+</joint>
+
+<!-- Link2B -->
+<link name="link2_B">
+  <inertial>
+    <mass value="1.677"/>
+    <origin xyz="0.000380 0.175 0.102383"/>
+    <inertia ixx="0.040667106" ixy="0.000000423" ixz="0.000012806" iyy="0.002418749" iyz="0.0" izz="0.041331488"/>
+  </inertial>
+  <visual>
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+    <geometry>
+      <mesh filename="package://cable_suspended_robotics/mesh/cranebot/link2.stl"/>
+    </geometry>
+    <material name="Schunk/Blue">
+      <color rgba="0.0 0.0 0.6 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+    <geometry>
+      <mesh filename="package://cable_suspended_robotics/mesh/cranebot/link2.stl"/>
+    </geometry>
+  </collision>
+</link>
+
+<!-- Joint between Link2B and Link3B (second ERB145) -->
+<joint name="link2_erb145_joint_B" type="revolute">
+  <origin rpy="3.1415926536 0.0 1.57079632675" xyz="0.0 0.350 0.0"/>
+  <parent link="link2_B"/>
+  <child link="erb145_link3_B"/>
+  <axis xyz="0 0 1"/>
+  <limit effort="370" lower="-2.7140" upper="2.7140" velocity="1.2566"/>
+</joint>
+
+<!-- Link3B (second ERB145) -->
+<link name="erb145_link3_B">
+  <inertial>
+    <mass value="4.151"/>
+    <origin xyz="0.006905 0.000078 -0.006906"/>
+    <inertia ixx="0.009940472" ixy="-0.000009512" ixz="-0.000193636" iyy="0.011902116" iyz="0.000013361" izz="0.009940489"/>
+  </inertial>
+  <visual>
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+    <geometry>
+      <mesh filename="package://cable_suspended_robotics/mesh/cranebot/erb145_link3.stl"/>
+    </geometry>
+    <material name="Schunk/LightGrey">
+      <color rgba="0.7 0.7 0.7 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+    <geometry>
+      <mesh filename="package://cable_suspended_robotics/mesh/cranebot/erb145_link3.stl"/>
+    </geometry>
+  </collision>
+</link>
+
+<!-- Joint between Link3B (second ERB145) and Link4B -->
+<joint name="erb145_link4_joint_B" type="revolute">
+  <origin rpy="1.57079632675 0 1.57079632675" xyz="0 0 0.0"/>
+  <parent link="erb145_link3_B"/>
+  <child link="link4_B"/>
+  <axis xyz="0 0 1"/>
+  <limit effort="370" lower="-2.9671" upper="2.9671" velocity="1.2566"/>
+</joint>
+
+<!-- Link4B -->
+<link name="link4_B">
+  <inertial>
+    <mass value="1.027"/>
+    <origin xyz="0.000231 -0.046821 0.173837"/>
+    <inertia ixx="0.007319651" ixy="-0.000007532" ixz="0.000009231" iyy="0.006465057" iyz="0.002050576" izz="0.001867734"/>
+  </inertial>
+  <visual>
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+    <geometry>
+      <mesh filename="package://cable_suspended_robotics/mesh/cranebot/link4.stl"/>
+    </geometry>
+    <material name="Schunk/Blue">
+      <color rgba="0.0 0.0 0.6 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+    <geometry>
+      <mesh filename="package://cable_suspended_robotics/mesh/cranebot/link4.stl"/>
+    </geometry>
+  </collision>
+</link>
+
+<!-- Joint between Link4B and Link5B (ERB115) -->
+<joint name="link4_erb115_joint_B" type="revolute">
+  <origin rpy="-1.57079632675 0.0 0.0" xyz="0.0 0.0 0.305"/>
+  <parent link="link4_B"/>
+  <child link="erb115_link5_B"/>
+  <axis xyz="0 0 1"/>
+  <limit effort="370" lower="-2.9671" upper="2.9671" velocity="1.2566"/>
+</joint>
+
+<!-- Link5B (ERB115) -->
+<link name="erb115_link5_B">
+  <inertial>
+    <mass value="2.010"/>
+    <origin xyz="-0.000062 -0.007296 -0.003888"/>
+    <inertia ixx="0.003730197" ixy="-0.000003264" ixz="-0.000004826" iyy="0.002928014" iyz="0.000056625" izz="0.003298819"/>
+  </inertial>
+  <visual>
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+    <geometry>
+      <mesh filename="package://cable_suspended_robotics/mesh/cranebot/erb115_link5.stl"/>
+    </geometry>
+    <material name="Schunk/LightGrey">
+      <color rgba="0.7 0.7 0.7 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+    <geometry>
+      <mesh filename="package://cable_suspended_robotics/mesh/cranebot/erb115_link5.stl"/>
+    </geometry>
+  </collision>
+</link>
+
+<!-- Joint between Link5B (ERB115) and GripperB -->
+<joint name="link5_gripper_joint_B" type="revolute">
+  <origin rpy="1.57079632675 0.0 0.0" xyz="0.0 0.0 0.0"/>
+  <parent link="erb115_link5_B"/>
+  <child link="gripper_B"/>
+  <axis xyz="0 0 1"/>
+  <limit effort="370" lower="-2.9671" upper="2.9671" velocity="1.2566"/>
+</joint>
+
+<!-- GripperB -->
+<link name="gripper_B">
+  <inertial>
+    <mass value="1.471"/>
+    <origin xyz="0.000008 -0.000045 0.133403"/>
+    <inertia ixx="0.004474138" ixy="-0.000005207" ixz="0.000000909" iyy="0.003582612" iyz="0.000000225" izz="0.002264269"/>
+  </inertial>
+  <visual>
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+    <geometry>
+      <mesh filename="package://cable_suspended_robotics/mesh/cranebot/gripper.stl"/>
+    </geometry>
+    <material name="Schunk/DarkGrey">
+      <color rgba="0.55 0.55 0.55 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+    <geometry>
+      <mesh filename="package://cable_suspended_robotics/mesh/cranebot/gripper.stl"/>
+    </geometry>
+  </collision>
+</link>
+
+
+</robot>
