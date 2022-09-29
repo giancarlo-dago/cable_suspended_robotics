@@ -24,7 +24,7 @@ class IDENTIFICATION {
         std_srvs::Empty _pauseSrv;
         std_srvs::Empty _unpauseSrv;
         gazebo_msgs::SetModelConfiguration _configSrv;
-        double _shoulder_link_pose[7];
+        double _platform_link_pose[7];
         double _gazeboTime;
         double _resetWaitTime;
     public:
@@ -66,13 +66,13 @@ IDENTIFICATION::IDENTIFICATION() {
 
 // Callback for saving the pose of the links
 void IDENTIFICATION::linkStateCB(gazebo_msgs::LinkStates lstate) {
-    _shoulder_link_pose[0] = lstate.pose[6].position.x;                     // Position
-    _shoulder_link_pose[1] = lstate.pose[6].position.y;
-    _shoulder_link_pose[2] = lstate.pose[6].position.z;
-    _shoulder_link_pose[3] = lstate.pose[6].orientation.x;                  // Orientation in quaternions
-    _shoulder_link_pose[4] = lstate.pose[6].orientation.y;
-    _shoulder_link_pose[5] = lstate.pose[6].orientation.z;
-    _shoulder_link_pose[6] = lstate.pose[6].orientation.w;
+    _platform_link_pose[0] = lstate.pose[6].position.x;                     // Position
+    _platform_link_pose[1] = lstate.pose[6].position.y;
+    _platform_link_pose[2] = lstate.pose[6].position.z;
+    _platform_link_pose[3] = lstate.pose[6].orientation.x;                  // Orientation in quaternions
+    _platform_link_pose[4] = lstate.pose[6].orientation.y;
+    _platform_link_pose[5] = lstate.pose[6].orientation.z;
+    _platform_link_pose[6] = lstate.pose[6].orientation.w;
 }
 
 
@@ -112,6 +112,7 @@ void IDENTIFICATION::readMeasures() {
     }
     std::cout << "Server says [ " << _configSrv.response.status_message << " ] " << std::endl;
 
+    // Shutdown ros
     ros::shutdown();
 }
 
