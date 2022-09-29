@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- These arguments you can pass this launch file-->
+  <arg name="hardware_interface" default="EffortJointInterface"/>
+
+  <arg name="controllers" default="joint_state_controller
+                                   bridge_joint_effort_pos_controller
+                                   trolley_joint_effort_pos_controller
+                                   cables_joint_x_effort_pos_controller
+                                   cables_joint_y_effort_pos_controller
+                                   cables_joint_z_effort_pos_controller
+                                   cranebot_platform_joint_effort_pos_controller
+                                   platform_erb145_joint_A_effort_pos_controller
+                                   erb145_link2_joint_A_effort_pos_controller
+                                   link2_erb145_joint_A_effort_pos_controller
+                                   erb145_link4_joint_A_effort_pos_controller
+                                   link4_erb115_joint_A_effort_pos_controller
+                                   link5_gripper_joint_A_effort_pos_controller
+                                   platform_erb145_joint_B_effort_pos_controller
+                                   erb145_link2_joint_B_effort_pos_controller
+                                   link2_erb145_joint_B_effort_pos_controller
+                                   erb145_link4_joint_B_effort_pos_controller
+                                   link4_erb115_joint_B_effort_pos_controller
+                                   link5_gripper_joint_B_effort_pos_controller"/>
+
+  <!-- Load joint controller configurations from YAML file to parameter server -->
+  <rosparam file="$(find cranebot)/config/cranebot_control.yaml" command="load" ns="/cranebot"/>
+
+  <!-- Load the controllers -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/cranebot" args="$(arg controllers)" />
+
+  <!-- Convert joint states to TF transforms for rviz, etc -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen">
+    <remap from="/joint_states" to="/cranebot/joint_states" />
+  </node>
+  
+</launch>
