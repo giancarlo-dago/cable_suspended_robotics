@@ -2,7 +2,7 @@
 g0 = 9.81;                  % [m\s^2]
 
 % Kinematic parameters
-L = 1.05;                   % [m] (Distance between the first passive joint and the second passive joint)
+L = 1.0;                    % [m] (Distance between the first passive joint and the second passive joint)
 D = 0;                      % [m] (Vertical distance between the second passive joint and the arms)
 L1 = 0.04;                  % [m] (Distance between first and second joint)
 L2 = 0.143;                 % [m] (Distance between second and third joint)
@@ -70,7 +70,6 @@ inertial_disp_1_right = [0 -0.0236 -0.00946];    % [m] (Link1 left)
 inertial_disp_2_right = [-0.015 0 -0.1]';       % [m] (Link2 left)
 inertial_disp_3_right = [0 0 -0.093]';          % [m] (Link3 left)
 inertial_disp_4_right = [0 0 -0.092]';          % [m] (Link4 left)   
-
 
 % Values of the frictions
 fv1p = 0;
