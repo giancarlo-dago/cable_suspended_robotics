@@ -14,7 +14,7 @@ nTraj = 16;
 nSamples = [924 864 862 1100 756 882,   1168 926 857 1190 865 756,  780 1167,    1000 1000];
 
 for i=1:nTraj
-    realTraj = load(append('finalNatRes',int2str(TRAJ(i)),'.txt'));                  % Retrieve data from file
+    realTraj = load(append('../../experimental_data_analysis/licas/experiments_testbed_2022-09-06/finalNatRes',int2str(TRAJ(i)),'.txt'));                  % Retrieve data from file
     t = realTraj(1:nSamples(i),1);
     time = t-t(1);
     meanTs(i) = mean(time(2:end)-time(1:end-1));
