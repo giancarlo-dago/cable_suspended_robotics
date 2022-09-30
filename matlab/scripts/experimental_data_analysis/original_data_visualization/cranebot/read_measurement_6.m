@@ -2,10 +2,10 @@ close all
 clear
 clc
 
-addpath('../../../data/cranebot')
+addpath('../../../../data/cranebot')
 
 % Read file and save data
-filename = '2021-06-29-02.csv';
+filename = '2021-06-29-06.csv';
 M = readmatrix(filename);
 
 % Build the time vector
@@ -20,22 +20,30 @@ D = M(:,4);                                                 % Radial distance fr
 [X,Y,Z] = sph2cart(deg2rad(V),deg2rad(H),D);                % From spherical coordinates to cartesian coordinates
 
 % From [mm] to [m] 
-X = X./1000;
+X = X./1000;                                    
 Y = Y./1000;
 Z = Z./1000;
 
-% Plots Position over the time
+% Plots Position over the time (X, Y and Z)
 figure('WindowState','Maximized');
-sgtitle('Movement of the overhead crane (Bridge) - Cartesian coordinates','FontWeight','bold')
+% sgtitle('Movement of the overhead crane (Trolley) - Cartesian coordinates','FontWeight','bold')
 subplot(3,1,1);
-plot(time,X); grid; xlim([time(1) time(end)]); title('X'); xlabel('Time [s]'); ylabel('X [m]'); title('X Position','FontWeight','normal','FontSize',14)
+plot(time,Y); grid; xlim([time(1) time(end)]); title('X'); xlabel('[s]'); ylabel('[m]'); title('X Position','FontWeight','bold','FontSize',14)
 subplot(3,1,2);
-plot(time,Y); grid; xlim([time(1) time(end)]); title('Y'); xlabel('Time [s]'); ylabel('Y [m]'); title('Y Position','FontWeight','normal','FontSize',14)
+plot(time,X); grid; xlim([time(1) time(end)]); title('Y'); xlabel('[s]'); ylabel('[m]'); title('Y Position','FontWeight','bold','FontSize',14)
 subplot(3,1,3);
-plot(time,Z); grid; xlim([time(1) time(end)]); title('Z'); xlabel('Time [s]'); ylabel('Z [m]'); title('Z Position','FontWeight','normal','FontSize',14)
+plot(time,Z); grid; xlim([time(1) time(end)]); title('Z'); xlabel('[s]'); ylabel('[m]'); title('Z Position','FontWeight','bold','FontSize',14)
 
+% Plots Position over the time (X and Y)
 figure('WindowState','Maximized');
-sgtitle('Movement of the overhead crane (Bridge) - Spherical coordinates','FontWeight','bold')
+subplot(2,1,1);
+plot(time,Y); grid; xlim([time(1) time(end)]); title('X'); xlabel('[s]'); ylabel('[m]'); title('X Position','FontWeight','bold','FontSize',14)
+subplot(2,1,2);
+plot(time,X); grid; xlim([time(1) time(end)]); title('Y'); xlabel('[s]'); ylabel('[m]'); title('Y Position','FontWeight','bold','FontSize',14)
+
+% Plot spherical coordinates over time
+figure('WindowState','Maximized');
+sgtitle('Movement of the overhead crane (Trolley) - Spherical coordinates','FontWeight','bold')
 subplot(3,1,1);
 plot(time,V); grid; xlim([time(1) time(end)]); title('V'); xlabel('Time [s]'); ylabel('Azimuth [deg]'); title('Azimuth','FontWeight','normal','FontSize',14)
 subplot(3,1,2);
@@ -45,20 +53,20 @@ plot(time,D); grid; xlim([time(1) time(end)]); title('D'); xlabel('Time [s]'); y
 
 % Plot X-Y in the last part of the trajectory (to show the oscillation plane)
 figure('WindowState','Maximized')
-index = find(time>16.8,1,'first');
-plot(X(index:end,:),Y(index:end,:)); grid;
-title('Movement of the overhead crane (Bridge) - Oscillation plane','FontSize',14)
-axis([1.8 2.25 -0.2 0.25]); axis square
-xlabel('X Position [m]'); ylabel('Y Position [m]')
+index = find(time>19.39,1,'first');
+plot(Y(index:end,:),X(index:end,:)); grid;
+title('X-Y plot','FontSize',14)
+axis([-0.25 0.35 2.3 2.9]); axis square
+xlabel('X [m]'); ylabel('Y [m]')
 
 % % Animated Plot X-Y 
 % figure('WindowState','Maximized')
 % h = animatedline('LineStyle','none','Marker','o','MarkerSize',10,'MaximumNumPoint',5); grid; 
-% title('Movement of the overhead crane (Bridge) - Animation','FontSize',14);
+% title('Movement of the overhead crane (Trolley) - Animation','FontSize',14);
 % xlabel('X Position [m]'); ylabel('Y Position [m]')
-% axis([1 8 -3.5 3.5]); axis square
+% axis([-3.5 3.5 1 8]); axis square
 % for k = 1:length(X)
-%     addpoints(h,X(k),Y(k));
+%     addpoints(h,Y(k),X(k));
 %     drawnow
 % end
 
@@ -77,5 +85,7 @@ subplot(3,1,2);
 plot(time,E(:,2)); grid; xlim([time(1) time(end)]); title('E_y'); xlabel('[s]'); ylabel('[deg]'); title('Euler Y','FontWeight','bold','FontSize',14)
 subplot(3,1,3);
 plot(time,E(:,3)); grid; xlim([time(1) time(end)]); title('E_x'); xlabel('[s]'); ylabel('[deg]'); title('Euler X','FontWeight','bold','FontSize',14)
+
+
 
 

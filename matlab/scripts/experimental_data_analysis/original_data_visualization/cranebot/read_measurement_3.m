@@ -2,7 +2,7 @@ close all
 clear
 clc
 
-addpath('../../../data/cranebot')
+addpath('../../../../data/cranebot')
 
 %%
 filename = '2021-06-29-03.csv';
