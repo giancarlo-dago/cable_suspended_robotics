@@ -15,7 +15,7 @@ TRAJ = 7; nTraj = 1; nSamples = 79473;                                          
 % TRAJ = 7; nTraj = 1; nSamples = 1000;                                                 % natRes
 
 for i=1:nTraj
-    realTraj = load(append('dataMod',int2str(TRAJ(i)),'.txt'));
+    realTraj = load(append('../../../experimental_data_analysis/data_modification/cranebot/dataMod',int2str(TRAJ(i)),'.txt'));
     t = realTraj(1:nSamples(i),1);
     time = t-t(1);
     meanTs(i) = mean(time(2:end)-time(1:end-1));
