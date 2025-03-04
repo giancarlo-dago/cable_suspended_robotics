@@ -1,0 +1,4 @@
+  t2 = lAz*lAz;
+  t3 = mA*t2;
+  A0[0][0] = iAxx+t3+lAz*mA*(LC*cos(qAR)-off*sin(qAR));
+  A0[0][2] = iAxx+t3;

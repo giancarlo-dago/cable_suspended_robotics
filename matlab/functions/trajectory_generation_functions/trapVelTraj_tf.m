@@ -17,10 +17,10 @@
 %                           - t : trajectory time interval
 
 function [s, sdot, sdotdot, t] = trapVelTraj_tf(dt, tFinal, accDes, sInit, sFinal)
-   
-    % Find feasible acceleration
-    sqrtArg =  (tFinal^2*accDes - 4*(sFinal-sInit))/accDes;
-    
+  
+    % Find feasible acceleration and accelerationTime
+    sqrtArg = (tFinal^2*accDes - 4*abs(sFinal-sInit))/accDes;
+
     if (sqrtArg < 0)
         acc = 4*abs(sFinal-sInit)/tFinal^2;
         tAcc = tFinal/2;
@@ -28,15 +28,24 @@ function [s, sdot, sdotdot, t] = trapVelTraj_tf(dt, tFinal, accDes, sInit, sFina
         acc = accDes;
         tAcc = tFinal/2 - 0.5*sqrt(sqrtArg);
     end
+    
+    % Check on the signum of the acceleration
+    if ((sFinal-sInit)<0)
+        acc = -acc;
+    end
   
+    % Find cruiseVel
+    cruiseVel = tAcc*acc;
+    
     t=0:dt:tFinal;
     s = 0*t;
     sdot = 0*t;
     sdotdot = 0*t;
 
-    %Curvilinear Abscissa generator
+    % Curvilinear Abscissa generator
     for k = 1:length(s)
         time = t(k);
+        
         s(k) =       (sInit + 0.5*acc*time^2)               *u(time)*u(tAcc-time) + ...
                      (sInit + cruiseVel*(time - tAcc/2))    *u0(time-tAcc)*u(tFinal-tAcc-time)+ ... 
                      (sFinal- 0.5*acc*(tFinal-time)^2)      *u0(time-(tFinal-tAcc))*u(tFinal-time)+ ...
@@ -54,9 +63,10 @@ function [s, sdot, sdotdot, t] = trapVelTraj_tf(dt, tFinal, accDes, sInit, sFina
     end
 end
 
+
 function y = u(t)
 
-    if t>0
+    if t>=0
         y=1;
     else
         y=0;
@@ -66,7 +76,7 @@ end
 
 function y = u0(t)
 
-    if t>=0
+    if t>0
         y=1;
     else
         y=0;

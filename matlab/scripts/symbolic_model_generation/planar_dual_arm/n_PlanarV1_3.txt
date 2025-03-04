@@ -1,0 +1,2 @@
+  t2 = qCd*qCd;
+  t0 = fvA*qARd+g0*lAz*mA*sin(qAR+qC)+LC*lAz*mA*t2*sin(qAR)+lAz*mA*off*t2*cos(qAR);

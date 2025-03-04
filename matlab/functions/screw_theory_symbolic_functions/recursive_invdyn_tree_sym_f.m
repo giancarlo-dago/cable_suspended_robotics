@@ -38,7 +38,7 @@ function tau = recursive_invdyn_tree_sym_f(theta, dtheta, ddtheta, g, info, msg)
             A(:,i) = sym(Ad_f(inv(M_bi(:,:,i))) * current_S);                                  % Computation of screw vector of joint i referred to frame {i}
         end
     end
-
+    
     for i=1:n_frames
         Mbi = sym(M_bi(:,:,i));
         if i == 1                                                                   % Computation M_{i,i-1}: tranformation matrix at rest position
@@ -220,7 +220,7 @@ function tau = recursive_invdyn_tree_sym_f(theta, dtheta, ddtheta, g, info, msg)
 %     disp('------------------------------------------------------')
 %     Vd
 %     disp('------------------------------------------------------')
-%     F
+%     F_ext
 %     disp('------------------------------------------------------')
 %     tau
 %     disp('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
